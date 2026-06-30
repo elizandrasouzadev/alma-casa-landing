@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alma Casa — Móveis e Decoração</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F5F2;
+      --ink: #1C1917;
+      --muted: #78716C;
+      --border: #E5E0D8;
+      --accent: #C4714A;
+      --cream: #FBF9F6;
+      --sans: 'DM Sans', sans-serif;
+      --serif: 'DM Serif Display', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-logo em { color: var(--accent); font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-cart {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--ink);
+      font-family: var(--sans);
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .nav-cart:hover { border-color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4.5rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em { font-style: italic; color: var(--accent); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 2.25rem;
+      font-weight: 300;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.9rem;
+      border-radius: 2px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+    }
+
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent); }
+
+    .btn-ghost {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    .btn-banner {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .btn-banner:hover { background: var(--accent); color: #fff; }
+
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--cream);
+      padding: 1rem 1.25rem;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 8px 24px rgba(28,25,23,0.12);
+      max-width: 240px;
+    }
+
+    .hero-badge img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .hero-badge-name { font-size: 0.8rem; font-weight: 500; margin-bottom: 2px; }
+
+    .hero-badge-price {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .price-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 3rem 5rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    .section-link {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+      white-space: nowrap;
+    }
+
+    .section-link:hover { gap: 0.65rem; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .cat-card {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .cat-card:hover img { transform: scale(1.04); }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,25,23,0.65) 0%, rgba(28,25,23,0) 45%);
+    }
+
+    .cat-label {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      color: #fff;
+    }
+
+    .cat-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+
+    .cat-count { font-size: 0.78rem; opacity: 0.85; }
+
+    /* ── PRODUCTS ── */
+    .products {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 3rem 5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(28,25,23,0.08);
+    }
+
+    .product-img-wrap { aspect-ratio: 1/1; overflow: hidden; position: relative; }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+    .product-tag {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .product-body { padding: 1rem 1.1rem 1.25rem; }
+
+    .product-cat {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .product-name { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.3; }
+    .product-price { font-size: 0.95rem; font-weight: 600; }
+
+    /* ── BANNER ── */
+    .banner {
+      max-width: 1280px;
+      margin: 0 auto 5rem;
+      padding: 0 3rem;
+    }
+
+    .banner-inner {
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 6px;
+      padding: 3.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 2.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner-text .section-eyebrow { color: var(--accent); }
+
+    .banner-title {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .banner-title em { font-style: italic; color: var(--accent); }
+
+    .banner-desc {
+      font-size: 0.95rem;
+      color: #C9C5BF;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      max-width: 400px;
+      font-weight: 300;
+    }
+
+    .banner-img {
+      aspect-ratio: 4/3;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .banner-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 3rem 5.5rem;
+    }
+
+    .test-grid {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    }
+
+    .test-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: scroll-test 32s linear infinite;
+      width: max-content;
+    }
+
+    .test-grid:hover .test-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-test {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .test-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.75rem;
+      width: 340px;
+      flex-shrink: 0;
+    }
+
+    .test-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+    .test-quote {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .test-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .test-name { font-size: 0.85rem; font-weight: 500; }
+    .test-location { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── BLOG ── */
+    .blog {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 3rem 5rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .blog-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-img-wrap {
+      aspect-ratio: 4/3;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .blog-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover .blog-img-wrap img { transform: scale(1.05); }
+
+    .blog-cat {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-title {
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+
+    .blog-date { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1rem 3rem 6rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--sans);
+    }
+
+    .faq-question-text {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--ink);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon::before {
+      width: 100%;
+      height: 1.5px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .faq-icon::after {
+      width: 1.5px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .faq-item.open .faq-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+    .faq-item.open .faq-icon::before { background: var(--accent); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 1.4rem;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 620px;
+    }
+
+
+    .newsletter {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .newsletter-inner { max-width: 480px; margin: 0 auto; }
+
+    .newsletter-title {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .newsletter-title em { font-style: italic; color: var(--accent); }
+
+    .newsletter-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      font-weight: 300;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-size: 0.875rem;
+      font-family: var(--sans);
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-input:focus { border-color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 3rem 2.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo em { color: var(--accent); font-style: italic; }
+
+    .footer-about {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 280px;
+      font-weight: 300;
+    }
+
+    .footer-col-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.85rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .footer-social-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; padding-top: 2.5rem; }
+      .hero-visual { order: -1; max-width: 480px; margin: 0 auto; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .banner-inner { grid-template-columns: 1fr; }
+      .banner-img { order: -1; max-width: 420px; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2rem 1.25rem 3rem; }
+      .categories, .products, .testimonials, .blog, .faq { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .banner { padding: 0 1.25rem; }
+      .banner-inner { padding: 2.25rem 1.5rem; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .newsletter { padding: 3rem 1.25rem; }
+      .newsletter-form { flex-direction: column; }
+      footer { padding: 3rem 1.25rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .cat-card img, .product-img-wrap img { transition: none !important; }
+      .price-dot { animation: none !important; }
+      .test-track { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Alma<em>Casa</em></a>
+    <ul class="nav-links">
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="https://elizandrasouzadev.github.io/shopify-collection-filter">Coleção Completa</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://elizandrasouzadev.github.io/react-shopping-cart" class="nav-cart">🛒 Carrinho</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Coleção 2026</p>
+      <h1 class="hero-title">Casas com <em>alma</em>, peça por peça</h1>
+      <p class="hero-desc">
+        Móveis e objetos pensados para durar — design escandinavo com identidade brasileira, em cada canto da sua casa.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://elizandrasouzadev.github.io/shopify-collection-filter" class="btn btn-primary">Ver coleção</a>
+        <a href="#categorias" class="btn btn-ghost">Explorar categorias</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=900&q=85" alt="Poltrona Luma em sala de estar" />
+      <div class="hero-badge">
+        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=120&q=80" alt="Poltrona Luma" />
+        <div>
+          <p class="hero-badge-name">Poltrona Luma</p>
+          <p class="hero-badge-price"><span class="price-dot"></span>R$ 1.890,00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categorias">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-eyebrow">Navegue por ambiente</p>
+        <h2 class="section-title">Encontre o que <em>combina</em> com você</h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <a href="#" class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80" alt="Sala de estar" />
+        <div class="cat-overlay"></div>
+        <div class="cat-label">
+          <p class="cat-name">Sala</p>
+          <p class="cat-count">24 produtos</p>
+        </div>
+      </a>
+      <a href="#" class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&q=80" alt="Quarto" />
+        <div class="cat-overlay"></div>
+        <div class="cat-label">
+          <p class="cat-name">Quarto</p>
+          <p class="cat-count">17 produtos</p>
+        </div>
+      </a>
+      <a href="#" class="cat-card reveal">
+        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80" alt="Escritório" />
+        <div class="cat-overlay"></div>
+        <div class="cat-label">
+          <p class="cat-name">Escritório</p>
+          <p class="cat-count">12 produtos</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="produtos">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-eyebrow">Selecionados pra você</p>
+        <h2 class="section-title">Peças em <em>destaque</em></h2>
+      </div>
+      <a href="https://elizandrasouzadev.github.io/shopify-collection-filter" class="section-link">Ver todos os produtos →</a>
+    </div>
+
+    <div class="product-grid">
+      <a href="#" class="product-card reveal">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=80" alt="Poltrona Luma" />
+          <span class="product-tag">Exclusivo</span>
+        </div>
+        <div class="product-body">
+          <p class="product-cat">Sala</p>
+          <p class="product-name">Poltrona Luma — Amarelo Mostarda</p>
+          <p class="product-price">R$ 1.890,00</p>
+        </div>
+      </a>
+
+      <a href="#" class="product-card reveal">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80" alt="Sofá Linen" />
+          <span class="product-tag">Novo</span>
+        </div>
+        <div class="product-body">
+          <p class="product-cat">Sala</p>
+          <p class="product-name">Sofá Linen — Areia</p>
+          <p class="product-price">R$ 3.467,00</p>
+        </div>
+      </a>
+
+      <a href="#" class="product-card reveal">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=500&q=80" alt="Cama Oslo" />
+        </div>
+        <div class="product-body">
+          <p class="product-cat">Quarto</p>
+          <p class="product-name">Cama Oslo — Carvalho</p>
+          <p class="product-price">R$ 4.213,00</p>
+        </div>
+      </a>
+
+      <a href="#" class="product-card reveal">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80" alt="Mesa de Trabalho" />
+        </div>
+        <div class="product-body">
+          <p class="product-cat">Escritório</p>
+          <p class="product-name">Mesa de Trabalho em Nogal</p>
+          <p class="product-price">R$ 2.876,00</p>
+        </div>
+      </a>
+
+      <a href="#" class="product-card reveal">
+        <div class="product-img-wrap">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500&q=80" alt="Tapete Berber" />
+        </div>
+        <div class="product-body">
+          <p class="product-cat">Sala</p>
+          <p class="product-name">Tapete Berber Artesanal</p>
+          <p class="product-price">R$ 978,00</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <div class="banner-inner">
+      <div class="banner-text reveal">
+        <p class="section-eyebrow">Feito pra durar</p>
+        <h2 class="banner-title">Materiais nobres,<br><em>acabamento</em> artesanal</h2>
+        <p class="banner-desc">
+          Cada peça da Alma Casa passa por curadoria criteriosa de fornecedores — madeira de reflorestamento, tecidos naturais e ferragens duráveis.
+        </p>
+        <a href="https://elizandrasouzadev.github.io/shopify-collection-filter" class="btn btn-banner">Conhecer a coleção</a>
+      </div>
+      <div class="banner-img reveal">
+        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=700&q=80" alt="Tapete artesanal" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="depoimentos">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-eyebrow">Quem já comprou</p>
+        <h2 class="section-title">Histórias da nossa <em>comunidade</em></h2>
+      </div>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-track">
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"A poltrona chegou em perfeito estado e é ainda mais linda pessoalmente. O amarelo deu vida pro meu canto de leitura."</p>
+          <div class="test-author">
+            <div class="test-avatar">MF</div>
+            <div>
+              <p class="test-name">Mariana Ferreira</p>
+              <p class="test-location">São Paulo, SP</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"Comprei a mesa de centro com receio do frete, mas chegou bem embalada e a qualidade do mármore surpreendeu."</p>
+          <div class="test-author">
+            <div class="test-avatar">RC</div>
+            <div>
+              <p class="test-name">Rodrigo Castro</p>
+              <p class="test-location">Belo Horizonte, MG</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★☆</p>
+          <p class="test-quote">"Demorou um pouco mais que o esperado pra chegar, mas o sofá é extremamente confortável. Valeu a espera."</p>
+          <div class="test-author">
+            <div class="test-avatar">FL</div>
+            <div>
+              <p class="test-name">Fernanda Lima</p>
+              <p class="test-location">Rio de Janeiro, RJ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"Montei o quarto inteiro com peças da Alma Casa. A cama Oslo é linda e muito bem feita, recomendo demais."</p>
+          <div class="test-author">
+            <div class="test-avatar">JP</div>
+            <div>
+              <p class="test-name">Juliana Prado</p>
+              <p class="test-location">Curitiba, PR</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"Atendimento excelente quando tive dúvida sobre medidas. A mesa de trabalho ficou perfeita no meu home office."</p>
+          <div class="test-author">
+            <div class="test-avatar">TA</div>
+            <div>
+              <p class="test-name">Thiago Almeida</p>
+              <p class="test-location">Porto Alegre, RS</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★☆</p>
+          <p class="test-quote">"O tapete é lindo e de ótima qualidade. Só achei o preço um pouco salgado, mas o material compensa."</p>
+          <div class="test-author">
+            <div class="test-avatar">CB</div>
+            <div>
+              <p class="test-name">Camila Borges</p>
+              <p class="test-location">Salvador, BA</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- repete o mesmo bloco pra n ter salto no loop -->
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"A poltrona chegou em perfeito estado e é ainda mais linda pessoalmente. O amarelo deu vida pro meu canto de leitura."</p>
+          <div class="test-author">
+            <div class="test-avatar">MF</div>
+            <div>
+              <p class="test-name">Mariana Ferreira</p>
+              <p class="test-location">São Paulo, SP</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★☆</p>
+          <p class="test-quote">"Comprei a mesa de centro com receio do frete, mas chegou bem embalada e a qualidade do mármore surpreendeu."</p>
+          <div class="test-author">
+            <div class="test-avatar">RC</div>
+            <div>
+              <p class="test-name">Rodrigo Castro</p>
+              <p class="test-location">Belo Horizonte, MG</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★☆</p>
+          <p class="test-quote">"Demorou um pouco mais que o esperado pra chegar, mas o sofá é extremamente confortável. Valeu a espera."</p>
+          <div class="test-author">
+            <div class="test-avatar">FL</div>
+            <div>
+              <p class="test-name">Fernanda Lima</p>
+              <p class="test-location">Rio de Janeiro, RJ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"Montei o quarto inteiro com peças da Alma Casa. A cama Oslo é linda e muito bem feita, recomendo demais."</p>
+          <div class="test-author">
+            <div class="test-avatar">JP</div>
+            <div>
+              <p class="test-name">Juliana Prado</p>
+              <p class="test-location">Curitiba, PR</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★★</p>
+          <p class="test-quote">"Atendimento excelente quando tive dúvida sobre medidas. A mesa de trabalho ficou perfeita no meu home office."</p>
+          <div class="test-author">
+            <div class="test-avatar">TA</div>
+            <div>
+              <p class="test-name">Thiago Almeida</p>
+              <p class="test-location">Porto Alegre, RS</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card">
+          <p class="test-stars">★★★★☆</p>
+          <p class="test-quote">"O tapete é lindo e de ótima qualidade. Só achei o preço um pouco salgado, mas o material compensa."</p>
+          <div class="test-author">
+            <div class="test-avatar">CB</div>
+            <div>
+              <p class="test-name">Camila Borges</p>
+              <p class="test-location">Salvador, BA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-eyebrow">No nosso blog</p>
+        <h2 class="section-title">Inspiração para sua <em>casa</em></h2>
+      </div>
+      <a href="#" class="section-link">Ver todos os posts →</a>
+    </div>
+
+    <div class="blog-grid">
+      <a href="#" class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?w=500&q=80" alt="Sala minimalista" />
+        </div>
+        <p class="blog-cat">Tendências</p>
+        <p class="blog-title">5 tons neutros que nunca saem de moda na decoração</p>
+        <p class="blog-date">12 de janeiro, 2026</p>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=500&q=80" alt="Quarto aconchegante" />
+        </div>
+        <p class="blog-cat">Guia</p>
+        <p class="blog-title">Como escolher o tamanho certo de cama para o seu quarto</p>
+        <p class="blog-date">28 de dezembro, 2025</p>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500&q=80" alt="Tapete artesanal" />
+        </div>
+        <p class="blog-cat">Materiais</p>
+        <p class="blog-title">Tecidos naturais: por que valem o investimento</p>
+        <p class="blog-date">15 de dezembro, 2025</p>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80" alt="Home office" />
+        </div>
+        <p class="blog-cat">Produtividade</p>
+        <p class="blog-title">Montando um home office sem perder o estilo da casa</p>
+        <p class="blog-date">02 de dezembro, 2025</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-eyebrow">Dúvidas frequentes</p>
+        <h2 class="section-title">Perguntas e <em>respostas</em></h2>
+      </div>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-question-text">Qual o prazo de entrega dos produtos?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            O prazo varia conforme o produto e a região. Peças prontas para envio chegam em até 10 dias úteis. Itens sob encomenda, como a Poltrona Luma, têm prazo de produção de 15 dias úteis antes do envio.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-question-text">Posso trocar ou devolver um produto?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sim. Você tem até 7 dias corridos após o recebimento para solicitar troca ou devolução, conforme o Código de Defesa do Consumidor. O produto deve estar sem uso e na embalagem original.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-question-text">Os móveis vêm montados?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A maioria das peças grandes, como sofás e camas, vem semi-montada com instruções simples. Itens menores como mesas de centro e criados-mudos já chegam prontos para uso.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-question-text">Vocês entregam em todo o Brasil?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Entregamos para todo o território nacional. O frete é calculado automaticamente no checkout com base no CEP e no peso dos itens selecionados.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-question-text">Como faço pra saber se um produto está disponível?</span>
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A disponibilidade aparece direto na página do produto. Itens esgotados ficam marcados e você pode deixar seu e-mail pra ser avisado quando voltarem ao estoque.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="newsletter-inner reveal">
+      <h2 class="newsletter-title">Receba <em>novidades</em> em primeira mão</h2>
+      <p class="newsletter-desc">Lançamentos, promoções e inspiração para sua casa, direto no seu e-mail.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" class="newsletter-input" placeholder="Seu e-mail" required />
+        <button type="submit" class="btn btn-primary">Inscrever</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-logo">Alma<em>Casa</em></p>
+        <p class="footer-about">Móveis e objetos de decoração com design atemporal, pensados para casas que contam histórias.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Loja</p>
+        <ul class="footer-links">
+          <li><a href="#categorias">Categorias</a></li>
+          <li><a href="https://elizandrasouzadev.github.io/shopify-collection-filter">Coleção completa</a></li>
+          <li><a href="https://elizandrasouzadev.github.io/react-shopping-cart">Carrinho</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Empresa</p>
+        <ul class="footer-links">
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Sustentabilidade</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Atendimento</p>
+        <ul class="footer-links">
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Trocas e devoluções</a></li>
+          <li><a href="#">Rastrear pedido</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Alma Casa. Projeto de portfólio desenvolvido por Elizandra Souza.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-icon" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.6 3c.3 2.1 1.6 3.6 3.8 3.8v2.6c-1.4.1-2.7-.3-3.8-1.1v6.4c0 3.1-2.5 5.3-5.5 5.3-3 0-5.5-2.4-5.5-5.4 0-3 2.6-5.4 5.6-5.3v2.7c-1.5-.1-2.8.9-2.8 2.5 0 1.5 1.2 2.6 2.7 2.6 1.6 0 2.8-1.2 2.8-2.8V3h2.7Z" stroke="currentColor" stroke-width="0.4" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" class="footer-social-icon" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="5.5" width="20" height="13" rx="3.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const inner = item.querySelector('.faq-answer-inner');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // fecha os outros itens abertos
+        faqItems.forEach(other => {
+          if (other !== item) {
+            other.classList.remove('open');
+            other.querySelector('.faq-answer').style.maxHeight = null;
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('open');
+          answer.style.maxHeight = null;
+        } else {
+          item.classList.add('open');
+          answer.style.maxHeight = inner.offsetHeight + 'px';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
